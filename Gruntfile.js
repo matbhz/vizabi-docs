@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         assemble: {
             options: {
                 flatten: true,
-                assets: 'src/assets/',
+                assets: 'dist/assets/',
                 helpers: 'src/helpers/*.js',
                 layout: 'src/templates/layouts/default.hbs',
                 partials: 'src/templates/partials/*.hbs',

@@ -1,0 +1,291 @@
+body {
+    font-family: 'Lato', Helvetica, Arial, Freesans, clean, sans-serif;
+    background: #fefefe;
+    margin: 0px;
+    padding: 0px;
+    line-height: 170%;
+    color: #444444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+
+h1 {
+    color: #444444;
+    font-size: 36px;
+}
+
+h2 {
+    color: #444444;
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+h6 {
+    color: #777777;
+    background-color: inherit;
+    font-size: 14px;
+}
+
+hr {
+    height: 0.2em;
+    border: 0;
+    color: #CCCCCC;
+    background-color: #CCCCCC;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+li,
+table,
+pre {
+    margin: 15px 0;
+}
+
+pre {
+    background-color: #F4F4F4;
+    box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.03);
+    line-height: 1.5em;
+    overflow: auto;
+    margin: 20px 0px;
+    padding: 20px;
+    font-size: 13px;
+}
+/* syntax highlighting */
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+    color: #998;
+    font-style: italic;
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+    color: #333;
+    font-weight: bold;
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+    color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+    color: #960f4a;
+}
+
+pre .title,
+pre .id,
+pre .coffeescript .params,
+pre .scss .preprocessor {
+    color: #900;
+    font-weight: bold;
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+    font-weight: normal;
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+    color: #458;
+    font-weight: bold;
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+    color: #000080;
+    font-weight: normal;
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+    color: #008080;
+}
+
+pre .regexp {
+    color: #009926;
+}
+
+pre .class {
+    color: #458;
+    font-weight: bold;
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+    color: #990073;
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+    color: #0086b3;
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+    color: #999;
+    font-weight: bold;
+}
+
+pre .deletion {
+    background: #ffdddd;
+}
+
+pre .addition {
+    background: #ddffdd;
+}
+
+pre .diff .change {
+    background: #0086b3;
+}
+
+pre .chunk {
+    color: #aaaaaa;
+}
+/* end of syntax highlighting */
+
+a,
+a:visited {
+    color: #afc256;
+    background-color: inherit;
+    text-decoration: none;
+}
+
+.vzbd-content {
+    position: absolute;
+    left: 0px;
+    right: 250px;
+}
+
+.vzbd-content article {
+    padding: 1em;
+    margin: auto;
+    max-width: 45em;
+    text-align: justify;
+}
+
+.vzbd-menu {
+    position: fixed;
+    width: 250px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background: #333333;
+}
+
+.vzbd-menu > ul,
+.vzbd-menu li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.vzbd-menu > ul {
+    padding: 10px;
+}
+
+.vzbd-menu li,
+.vzbd-menu li > a {
+    display: block;
+}
+
+.vzbd-menu li > a,
+.vzbd-menu li > a:hover,
+.vzbd-menu li > a:visited {
+    padding: 2px 7px;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+.vzbd-menu li > a:hover {
+    background-color: #444444;
+}
+
+.vzbd-content footer {
+    color: #999999;
+    padding: 30px;
+    text-align: center;
+}
+
+.vizabi-placeholder {
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    width: 750px;
+    max-width: 100%;
+    height: 500px;
+    border: 1px solid #eeeeee;
+}
+
+.vizabi-placeholder.mobile {
+    width: 300px;
+    height: 500px;
+    border: 30px solid #eeeeee;
+    border-radius: 17px;
+}
+
+.vizabi-placeholder.mobile.landscape {
+    width: 500px;
+    height: 300px;
+}
+
+@media screen and (max-width: 900px) {
+    .vzbd-menu {
+        display: none;
+    }
+    .vzbd-content {
+        position: static;
+    }
+    .vizabi-placeholder.mobile {
+        border: 1px solid #eeeeee;
+        border-radius: 0px;
+    }
+}
