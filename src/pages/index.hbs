@@ -1,0 +1,17 @@
+<section class="vzbd-content">
+{{#md-pages 'src/_content/*.*'}}
+  <article id="{{slug}}">
+    <h2>{{title}}</h2>
+    {{#markdown}}
+      {{{body}}}
+    {{/markdown}}
+  </article>
+{{/md-pages}}
+</section>
+<nav class="vzbd-menu">
+	<ul>
+	{{#md-pages 'src/_content/*.*'}}
+	  <li><a href="#{{slug}}">{{title}}</a></li>
+	{{/md-pages}}
+	</ul>
+</nav>
