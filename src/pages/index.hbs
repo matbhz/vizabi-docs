@@ -4,7 +4,7 @@
 
 {{#md-pages 'src/_content/*.*'}}
   <article id="{{slug}}">
-    <h1>{{title}}</h1>
+    <h1><a href="#{{slug}}" class='link'><i class="fa fa-link"></i></a>{{title}}</h1>
     {{#markdown}}
       {{{body}}}
     {{/markdown}}

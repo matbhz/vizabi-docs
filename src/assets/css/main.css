@@ -24,6 +24,7 @@ h1 {
 h2 {
     color: #444444;
     font-size: 24px;
+    margin-top: 40px;
 }
 
 h3 {
@@ -51,6 +52,18 @@ hr {
     background-color: #CCCCCC;
 }
 
+a,
+a:visited {
+    color: #afc256;
+    background-color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+  color: #444444;
+}
+
 p,
 blockquote,
 ul,
@@ -62,6 +75,44 @@ pre {
     margin: 15px 0;
 }
 
+h1 {
+  margin-left: -32px;
+  padding-left: 32px;
+}
+
+h1, p {
+  position: relative;
+}
+
+h1 .link {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 33px;
+  color: #CCCCCC;
+  font-size: 27px;
+}
+
+h1:hover .link {
+  display: block;
+}
+
+h1 .link:active {
+  color:  #afc256;
+}
+
+blockquote {
+  color: #999;
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+code {
+  padding: 4px 6px;
+  background-color: #F4F4F4;
+}
+
 pre {
     background-color: #F4F4F4;
     box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.03);
@@ -71,6 +122,11 @@ pre {
     padding: 20px;
     font-size: 13px;
 }
+
+pre > code {
+  padding: 0px;
+}
+
 /* syntax highlighting */
 
 pre .comment,
@@ -192,11 +248,51 @@ pre .chunk {
 }
 /* end of syntax highlighting */
 
-a,
-a:visited {
-    color: #afc256;
-    background-color: inherit;
-    text-decoration: none;
+.button {
+  border-radius: 2px;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  min-width: 32px;
+  height: 29px;
+  padding: 0px 10px;
+  font-size: 12px;
+  color: white !important;
+  text-align: center;
+  background: rgb(102, 102, 102);
+  border: 0px;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:active {
+  background: rgb(175, 195, 78);
+  outline: none;
+}
+
+.button:hover {
+  background: rgb(85, 85, 85);
+  outline: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.code-btn {
+  position: absolute;
+  right: 5px;
+  z-index: 10;
+  top: 11px;
 }
 
 .vzbd-content {
@@ -270,11 +366,15 @@ a:visited {
     height: 500px;
     border: 30px solid #eeeeee;
     border-radius: 17px;
+    margin: 30px auto;
 }
 
 .vizabi-placeholder.mobile.landscape {
     width: 500px;
     height: 300px;
+}
+.vizabi-placeholder.no-border {
+  border: 0px;
 }
 
 @media screen and (max-width: 900px) {
