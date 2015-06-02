@@ -1,0 +1,22 @@
+{
+  "name": "vizabi-docs",
+  "version": "1.0.0",
+  "homepage": "https://github.com/arthurcamara1/onePageDoc",
+  "authors": [
+    "Arthur Camara <arthurcamara@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bourbon": "~4.2.1",
+    "font-awesome": "~4.3.0",
+    "d3": "~3.5.5",
+    "vizabi": "https://github.com/Gapminder/vizabi.git#develop"
+  },
+  "devDependencies": {}
+}
