@@ -1,6 +1,6 @@
 #Vizabi Documentation page
 
-This project is used to build Vizabi's documentation page.
+Vizabi's documentation page. Vizabi Project: https://github.com/Gapminder/vizabi
 
 ##Quickstart
 
@@ -16,4 +16,4 @@ The documentation page will be build under `dist/`
 
 ##Add content
 
-Simply add Markdown files to the folder `src/_content/`
+Simply add markdown files to the folder `src/_content/`
