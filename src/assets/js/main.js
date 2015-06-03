@@ -1,8 +1,8 @@
 //view example on codepen
 
-// var WAFFLE_ADDRESS = 'http://static.gapminderdev.org/vizabi/waffles/{{LANGUAGE}}/basic-indicators.csv';
+// var WAFFLE_ADDRESS = 'http://static.gapminderdev.org/vizabi/waffles/en/basic-indicators.csv';
 
-var WAFFLE_ADDRESS = 'http://localhost/projects/vizabi-docs/bower_components/vizabi/local_data/waffles/{{LANGUAGE}}/basic-indicators.csv';
+var WAFFLE_ADDRESS = 'http://localhost/projects/vizabi-docs/bower_components/vizabi/local_data/waffles/en/basic-indicators.csv';
 
 var CODEPEN_WAFFLE_ADDRESS = "https://dl.dropboxusercontent.com/u/4933279/Gapminder/waffles/en/basic-indicators.csv";
 
