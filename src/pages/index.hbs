@@ -1,3 +1,11 @@
+<nav class="vzbd-menu">
+	<ul>
+	{{#md-pages 'src/_content/*.*'}}
+	  <li><a href="#{{slug}}">{{title}}</a></li>
+	{{/md-pages}}
+	</ul>
+</nav>
+
 <section class="vzbd-content">
 
 <p align="center"><img style="width: 420px; max-width: 70%;" src="{{assets}}img/vizabi.jpeg" /></p>
@@ -15,10 +23,3 @@
 	Made with &hearts; by <a href="http://www.gapminder.org/" target="blank">Gapminder Foundation</a> | <a href="https://github.com/Gapminder/vizabi" target="blank"><i class="fa fa-github"></i></a> 
 </footer>
 </section>
-<nav class="vzbd-menu">
-	<ul>
-	{{#md-pages 'src/_content/*.*'}}
-	  <li><a href="#{{slug}}">{{title}}</a></li>
-	{{/md-pages}}
-	</ul>
-</nav>
