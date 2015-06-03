@@ -1,6 +1,6 @@
 ---
-title: Donut Chart Tutorial
-slug: donut-chart
+title: Creating own tool
+slug: creating-own-tool
 ---
 
 Let’s make a simple donut chart, showing world population share by regions. The result looks like this:
@@ -91,7 +91,9 @@ this.components = [{
 ```
 
 ##Default options
-These are the parameters and state settings that would be set if they are not provided in the URL or by the container page. We set time to have the range of 1990-2012 years, with the deafult position at 2000. We let entities include all ("*") geo's of category "regions", which is equivalent to explicitly writing 'geo: ["asi", "ame", "eur", "afr"]'. 
+These are the parameters and state settings that would be set if they are not provided in the URL or by the container page. 
+
+We set time to have the range of 1990-2012 years, with the deafult position at 2000. We let entities include all ("*") geo's of category "regions", which is equivalent to explicitly writing 'geo: ["asi", "ame", "eur", "afr"]'. 
 
 ```js
 
@@ -183,8 +185,43 @@ Vizabi.Component.extend('donut', {
 });
 ```
 
+##Component init
+The init function will have the following:
 
 
+```js
+init: function(config, context) {
+    var _this = this;
+
+    this.name = 'donutchart';
+    
+    //provide the template as a string
+    this.template = '<div class="vzb-donutchart"><svg class="vzb-donutchart-svg"></svg></div>';
+
+    //define expected models for this component
+    this.model_expects = [
+        {name: "time", type: "time"},
+        {name: "marker", type: "model"}
+    ];
+
+    //bind the function update() to the change of time value in the model
+    this.model_binds = {
+        "change:time:value": function(evt) {
+            _this.update();
+        }
+    };
+
+    //call the prototype constructor of the component
+    this._super(config, context);
+
+    //init variables for d3 pie layout
+    this.colorScale = null;
+    this.arc = d3.svg.arc();
+    this.pie = d3.layout.pie()
+        .sort(null)
+        .value(function(d) { return d.pop; });
+},
+```
 
 ##Appending Vizabi tool to a DOM element
 Finally we need to point our tool to the data and append it to 'placeholder' div element:
