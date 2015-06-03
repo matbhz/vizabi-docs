@@ -323,6 +323,74 @@ component.model.value = 2012;
  */
 ```
 
+###Useful methods
+
+Every `Vizabi.Component` has three special methods:
+
+- **resize()**: called when the container detects a resize event
+- **readyOnce()**: called only once when *both* compoment's DOM and model are ready
+- **ready()**: called when DOM and model are ready (multiple times)
+
+Since we know that the DOM is ready in these methods, we can use `this.element` to access the root node of the component's template and `this.placeholder` to access the placeholder node. Example:
+
+```js
+var myComponent = Vizabi.Component.extend({
+    init: function(config, parent) {
+        //...
+    },
+    readyOnce: function(evt) {
+        this.element.innerHTML = "Hello World";
+    },
+    ready: function(evt) {
+        this.element.innerHTML = "I'm ready!";
+    },
+    resize: function(evt) {
+        this.element.innerHTML = "I'm resizing!";
+    }
+});
+```
+
+And since we know that the model is ready in `readyOnce` and `ready`, we can use `this.model` to access its properties and data:
+
+```js
+var myComponent = Vizabi.Component.extend({
+    init: function(config, parent) {
+        //...
+    },
+    ready: function(evt) {
+        console.log(this.model);
+    }
+});
+```
+
+Checkout how Vizabi's timeslider component uses such methods [here](https://github.com/Gapminder/vizabi/blob/develop/src/components/_gapminder/timeslider/timeslider.js#L105).
+
+*Note that listening to the model's `ready` event is different than using the component's `ready()` method, because in the later, we ensure that the DOM is also ready, not only the model*
+
+---
+
+##Vizabi.Tool
+
+Vizabi tools are the ultimate wrapper, the final packaging of our components. Think of it as an app. `Vizabi.Tool` extends `Vizabi.Component`, so they are essentially a component (which means they can render and include components) with an extra touch.
+
+Vizabi tools have `default_options`, which basically describe the entire model structure of the tool and include other models. Moreover, they have a special model and template. Finally, they have their own `validate` method which allows for cross model validation.
+
+For more details, checkout [how LineChart is implemented](https://github.com/Gapminder/vizabi/blob/develop/src/tools/linechart/linechart-tool.js#L19).
+
+###Built-in tools
+
+Vizabi currently ships with three built-in Tools: [BubbleChart](#bubble-chart), [LineChart](#line-chart) and [BarChart](#bar-chart). 
+
+You can initialize registered tools with the following:
+
+```js
+Vizabi("<ToolName>", document.getElementById("<id_placeholder>"), {
+	/* options */
+});
+
+```
+
+
 <script>
 	function openComponentModelExample() {
 		viewOnCodepen("Component-Model", "var TimeModel=Vizabi.Model.extend('mytime',{init:function(values,parent,bind){this._type='time';values=Vizabi.utils.extend({value:1800,start:1800,end:2015},values);this._super(values,parent,bind)}});var YearDisplay=Vizabi.Component.extend({init:function(config,parent){this.name='year-display';this.template='<h2><%= time %></h2>';this.model=new TimeModel();this.template_data={time:this.model.value};this._super(config,parent);var _this=this;this.model.on({'change':function(){_this.update()}})},update:function(evt){this.element.innerHTML=this.model.value}});var component=new YearDisplay({placeholder:document.getElementById('placeholder')});component.render();component.model.value=2012;");
