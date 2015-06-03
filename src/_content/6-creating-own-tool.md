@@ -185,9 +185,8 @@ Vizabi.Component.extend('donut', {
 });
 ```
 
-##Component init
+##Component.init
 The init function will have the following:
-
 
 ```js
 init: function(config, context) {
@@ -207,7 +206,10 @@ init: function(config, context) {
     //bind the function update() to the change of time value in the model
     this.model_binds = {
         "change:time:value": function(evt) {
-            _this.update();
+            //fetch the time from the model and update the text on screen
+            _this.time = _this.model.time.value;            
+            _this.yearEl.text(_this.timeFormatter(_this.time));                    
+            _this.redraw();
         }
     };
 
@@ -223,12 +225,152 @@ init: function(config, context) {
 },
 ```
 
+##Component.readyOnce
+This function is only called once after the data model and the dom are both ready for the first time. This allows to do the preparations before kicking off the startup sequence.
+
+```js
+readyOnce: function() {
+    var _this = this;
+
+    //link DOM elements to the variables
+    this.element = d3.select(this.element)
+    this.svgEl = this.element.select("svg").append("g");
+    this.yearEl = this.svgEl.append("text").attr("class", "year");
+    this.titleEl = this.svgEl.append("text").attr("class", "title");
+
+    //bind the resize() and update() events to container resize
+    this.on("resize", function() {
+        _this.resize();
+        _this.redraw();
+    });            
+
+    //run a startup sequence
+    this.resize();
+    this.update();
+    this.redraw();
+},
+```
+
+##Component.resize
+This function is called every time when the container is resized and allows the responsive behavior.
+
+```js
+resize: function() {
+
+    var height = parseInt(this.element.style("height"));
+    var width = parseInt(this.element.style("width"));
+    var min = Math.min(height, width);
+
+    this.svgEl.attr("transform","translate("+(width/2)+","+(height/2)+")");
+    this.titleEl.attr("y", "-0.1em");
+    this.yearEl.attr("y", "0.1em");
+
+    this.arc
+        .outerRadius(min/2 * 0.9)
+        .innerRadius(min/2 - min * 0.1)
+}
+```
+
+##Component.update
+This function updates everything that depends on the state parameters except the current time. It should be not exec
+
+```js
+update: function(){
+    this.timeFormatter = d3.time.format(this.model.time.formatInput);
+    this.colorScale = this.model.marker.color.getScale();
+
+    this.titleEl.text("Population");
+    this.items = this.model.marker.label.getItems();
+
+    this.entities = this.svgEl.selectAll('.vzb-dc-entity')
+        .data(this.items);
+
+    //exit selection
+    this.entities.exit().remove();
+
+    //enter selection
+    this.entities
+        .enter().append("g")
+        .attr("class", "vzb-dc-entity")
+        .each(function(){
+        d3.select(this).append("path");
+        d3.select(this).append("text").attr("class","label");
+    });
+}
+```
+
+##Component.redraw
+This function requests the data for the current time point and updates the visuals
+
+ ```js
+redraw: function() {
+    var _this = this;
+
+    //prepare the data and request the values for the current time from the model
+    var data = utils.clone(this.items);
+
+    data.forEach(function(d){
+        d.pop = _this.model.marker.axis.getValue({geo: d.geo, time: _this.time});
+        d.color = _this.model.marker.color.getValue({geo: d.geo, time: _this.time});
+        d.label = _this.model.marker.label.getValue({geo: d.geo, time: _this.time});
+    });
+
+    data = this.pie(data);
+
+    //set the properties of the donuts and text labels
+    this.entities
+        .data(data)
+        .select("path")
+        .attr("d", this.arc)
+        .style("fill", function(d) { return _this.colorScale(d.data.color) })
+        .style("stroke", "white")
+
+    this.entities
+        .select("text")
+        .attr("transform", function(d) { return "translate(" + _this.arc.centroid(d) + ")"; })
+        .text(function(d) { return d.data.label; });            
+}
+```
+
+
+
+##Responsiveness in CSS
+Here we added some additional styling to make the chart look good. Note how profiles large, medium and small are applied to change the font size.
+
+```css
+.vzb-donutchart{
+    position: absolute;
+    top: 0px; left: 0px; rigth: 0px; bottom: 0px;
+    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    width: 100%; height: 100%;
+}
+.vzb-donutchart svg{width:100%; height:100%}
+
+.vzb-donutchart text {text-anchor: middle; fill: rgb(96, 120, 137)}
+
+.vzb-donutchart .year {dominant-baseline: hanging; fill: #DDD;}
+
+.vzb-large .vzb-donutchart .year{font-size: 8.0em;}
+.vzb-large .vzb-donutchart .title{font-size: 4.0em;}
+.vzb-large .vzb-donutchart .label{font-size: 2.0em;}
+
+.vzb-medium .vzb-donutchart .year {font-size: 8.0em;}
+.vzb-medium .vzb-donutchart .title {font-size: 4.0em;}
+.vzb-medium .vzb-donutchart .label {font-size: 2.0em;}
+
+.vzb-small .vzb-donutchart .year {font-size: 4.0em;}
+.vzb-small .vzb-donutchart .title {font-size: 2.0em;}
+.vzb-small .vzb-donutchart .label {font-size: 1.0em;}
+```
+
+
+
 ##Appending Vizabi tool to a DOM element
 Finally we need to point our tool to the data and append it to 'placeholder' div element:
 
 ```js
 Vizabi('DonutChart', document.getElementById('placeholder'), 
-    {data: { reader: 'csv-file', path: 'https://dl.dropboxusercontent.com/u/4933279/Gapminder/waffles/{{LANGUAGE}}/basic-indicators.csv' }}
+    {data: { reader: 'csv-file', path: 'https://dl.dropboxusercontent.com/u/4933279/Gapminder/waffles/en/basic-indicators.csv' }}
 );
 ```
 
