@@ -281,6 +281,13 @@ pre .chunk {
   outline: none;
 }
 
+.button.large {
+  font-size: 1.6em;
+  height: 54px;
+  line-height: 54px;
+  padding: 8px 20px;
+}
+
 .left {
   float: left;
 }
