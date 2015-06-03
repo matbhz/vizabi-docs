@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                     expand: true
                 }, {
                     cwd: 'bower_components/vizabi/dist/',
-                    src: ['vizabi.min.js'],
+                    src: ['vizabi.min.js', 'vizabi.js'],
                     dest: 'dist/assets/js/',
                     expand: true
                 }, {

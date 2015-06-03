@@ -9,7 +9,7 @@ You can embed a Vizabi tool on your page or blog and tell your story with our gr
 
 <div id="bubble-chart-placeholder" class="vizabi-placeholder no-border"></div>
 
-In the following example the Vizabi bubble graph will appear in the div `placeholder`
+In the following example, Vizabi **BubbleChart** will appear in the div `placeholder`
 
 <a onclick='openBubbleChartExample()' class="button code-btn"><i class='fa fa-codepen'></i> Codepen</a>
 
@@ -41,11 +41,11 @@ If on a mobile, just flip your device. <button class="button right" onclick="fli
 
 ##Colors
 
-Vizabi tools are crafted to be highly customisable. You can enable or disable features and do all sorts of tuning. **Let's hack the color of Asia to purple.**
+Vizabi tools are crafted to be highly customisable. You can enable or disable features and do all sorts of tuning. **Let's hack the color of regions.**
 
 <div id="bubble-chart-placeholder3" class="vizabi-placeholder no-border"></div>
 
-Vizabi Initialiation:
+Vizabi Initialization:
 
 <a onclick='openBubbleChartExample3()' class="button code-btn"><i class='fa fa-codepen'></i> Codepen</a>
 
@@ -55,7 +55,10 @@ Vizabi('BubbleChart', document.getElementById('placeholder'), {
 	    "marker": {
 	        "color": {
 	            "palette": {
-	                "asi": "purple"
+	                "asi": "teal",
+	                "ame": "limegreen",
+	                "eur": "red",
+	                "afr": "deepskyblue"
 	            }
 	        }
 	    }
@@ -79,11 +82,11 @@ Vizabi('BubbleChart', document.getElementById('placeholder'), {
         "marker": {
             "color": {
                 "use": "indicator",
-                "which": "lex",
+                "which": "lex"
             },
             "axis_x": {
                 "use": "indicator",
-                "which": "pop",
+                "which": "pop"
             }
         }
 	}
@@ -151,131 +154,28 @@ Vizabi('BubbleChart', document.getElementById('placeholder'), {
 
 <script>
 
-Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder'), {
-		data: {
-			reader: 'json-file',
-			path: WAFFLE_ADDRESS
-		}
-	}
-);
-
-var mobileViz = Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder2'), {
-		data: {
-			reader: 'json-file',
-			path: WAFFLE_ADDRESS
-		}
-	}
-);
-
-
-Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder3'), {
-		data: {
-			reader: 'json-file',
-			path: WAFFLE_ADDRESS
-		},
-		state: {
-	        "marker": {
-	            "color": {
-	                "palette": {
-	                    "asi": "purple"
-	                }
-	            }
-	        }
-	    }
-	}
-);
-
-Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder4'), {
-		data: {
-			reader: 'json-file',
-			path: WAFFLE_ADDRESS
-		},
-		state: {
-	        "marker": {
-	            "color": {
-	                "use": "indicator",
-	                "which": "lex",
-	            },
-	            "axis_x": {
-	                "use": "indicator",
-	                "which": "pop",
-	            }
-	        }
-	    }
-	}
-);
-
-Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder5'), {
-		data: {
-			reader: 'json-file',
-			path: WAFFLE_ADDRESS
-		},
-		state: {
-	        "entities": {
-		        "show": {
-		            "filter": {
-		                 "geo": [ "dnk", "fin", "isl", "nor", "swe"]
-		             }
-		        }
-		    },
-		    "marker": {
-		        "color": {
-		            "use": "property",
-		            "which": "geo"
-		        }
-		    }
-	    }
-	}
-);
-
-Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder6'), {
-		data: {
-			reader: 'json-file',
-			path: WAFFLE_ADDRESS
-		},
-		language: {
-	        id: "pt",
-	        strings: {
-	            pt: {
-	                "title": "Bubblar titel",
-	                "indicator/lex": "Livslängd",
-	                "indicator/gdp_per_cap": "BNP per capita",
-	                "indicator/pop": "Befolkning",
-	                "indicator/geo.region": "Region",
-	                "indicator/geo": "Geo kod",
-	                "indicator/time": "Tid",
-	                "indicator/geo.category": "Geo kategori",
-	                "scaletype/linear": "Linjär",
-	                "scaletype/log": "Logaritmisk",
-	                "scaletype/time": "Tid",
-	              }
-	        }
-	    }
-	}
-);
-
 function openBubbleChartExample() {
-	viewOnCodepen("Vizabi Example Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { data: { reader: 'json-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
+	viewOnCodepen("Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { data: { reader: 'csv-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
 }
 
 function openBubbleChartExample2() {
-	viewOnCodepen("Vizabi Example Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { data: { reader: 'json-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});", "<div id='placeholder' style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;'></div>", "body{background:#ffffff}");
+	viewOnCodepen("Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { data: { reader: 'csv-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});", "<div id='placeholder' style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;'></div>", "body{background:#ffffff}");
 }
 
 function openBubbleChartExample3() {
-	viewOnCodepen("Vizabi Example Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { state:{'marker':{'color':{'palette':{'asi':'purple'}}}}, data: { reader: 'json-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
+	viewOnCodepen("Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { state:{'marker':{'color':{'palette':{'asi':'teal','ame':'limegreen','eur':'red','afr': 'deepskyblue'}}}}, data: { reader: 'csv-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
 }
 
 function openBubbleChartExample4() {
-	viewOnCodepen("Vizabi Example Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { state:{'marker':{'color':{'use':'indicator','which':'lex'},'axis_x':{'use':'indicator','which':'pop'}}}, data: { reader: 'json-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
+	viewOnCodepen("Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { state:{'marker':{'color':{'use':'indicator','which':'lex'},'axis_x':{'use':'indicator','which':'pop'}}}, data: { reader: 'csv-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
 }
 
 function openBubbleChartExample5() {
-	viewOnCodepen("Vizabi Example Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { state:{'entities':{'show':{'filter':{'geo':['dnk','fin','isl','nor','swe']}}},'marker':{'color':{'use':'property','which':'geo'}}}, data: { reader: 'json-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
+	viewOnCodepen("Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { state:{'entities':{'show':{'filter':{'geo':['dnk','fin','isl','nor','swe']}}},'marker':{'color':{'use':'property','which':'geo'}}}, data: { reader: 'csv-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
 }
 
 function openBubbleChartExample6() {
-	viewOnCodepen("Vizabi Example Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { language:{id:'se',strings:{se:{'title':'Bubblartitel','indicator/lex':'Livslängd','indicator/gdp_per_cap':'BNPpercapita','indicator/pop':'Befolkning','indicator/geo.region':'Region','indicator/geo':'Geokod','indicator/time':'Tid','indicator/geo.category':'Geokategori','scaletype/linear':'Linjär','scaletype/log':'Logaritmisk','scaletype/time':'Tid'}}}, data: { reader: 'json-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
+	viewOnCodepen("Bubble Chart", "var viz = Vizabi('BubbleChart', document.getElementById('placeholder'), { language:{id:'se',strings:{se:{'title':'Bubblartitel','indicator/lex':'Livslängd','indicator/gdp_per_cap':'BNPpercapita','indicator/pop':'Befolkning','indicator/geo.region':'Region','indicator/geo':'Geokod','indicator/time':'Tid','indicator/geo.category':'Geokategori','scaletype/linear':'Linjär','scaletype/log':'Logaritmisk','scaletype/time':'Tid'}}}, data: { reader: 'csv-file', path: '"+CODEPEN_WAFFLE_ADDRESS+"' }});");
 }
 
 function flipDeviceBubbleChart() {
@@ -288,6 +188,116 @@ function flipDeviceBubbleChart() {
 	}
 
 	//simulate window resize
-	mobileViz.trigger('resize');
+	mobileBubbleChartViz.trigger('resize');
 }
+
+ready(function() {
+
+	Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder'), {
+			data: {
+				reader: 'csv-file',
+				path: WAFFLE_ADDRESS
+			}
+		}
+	);
+
+	var mobileBubbleChartViz = Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder2'), {
+			data: {
+				reader: 'csv-file',
+				path: WAFFLE_ADDRESS
+			}
+		}
+	);
+
+
+	Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder3'), {
+			data: {
+				reader: 'csv-file',
+				path: WAFFLE_ADDRESS
+			},
+			state: {
+		        "marker": {
+		            "color": {
+		                "palette": {
+			                "asi": "teal",
+			                "ame": "limegreen",
+			                "eur": "red",
+			                "afr": "deepskyblue"
+		                }
+		            }
+		        }
+		    }
+		}
+	);
+
+	Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder4'), {
+			data: {
+				reader: 'csv-file',
+				path: WAFFLE_ADDRESS
+			},
+			state: {
+		        "marker": {
+		            "color": {
+		                "use": "indicator",
+		                "which": "lex",
+		            },
+		            "axis_x": {
+		                "use": "indicator",
+		                "which": "pop",
+		            }
+		        }
+		    }
+		}
+	);
+
+	Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder5'), {
+			data: {
+				reader: 'csv-file',
+				path: WAFFLE_ADDRESS
+			},
+			state: {
+		        "entities": {
+			        "show": {
+			            "filter": {
+			                 "geo": [ "dnk", "fin", "isl", "nor", "swe"]
+			             }
+			        }
+			    },
+			    "marker": {
+			        "color": {
+			            "use": "property",
+			            "which": "geo"
+			        }
+			    }
+		    }
+		}
+	);
+
+	Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder6'), {
+			data: {
+				reader: 'csv-file',
+				path: WAFFLE_ADDRESS
+			},
+			language: {
+		        id: "pt",
+		        strings: {
+		            pt: {
+		                "title": "Bubblar titel",
+		                "indicator/lex": "Livslängd",
+		                "indicator/gdp_per_cap": "BNP per capita",
+		                "indicator/pop": "Befolkning",
+		                "indicator/geo.region": "Region",
+		                "indicator/geo": "Geo kod",
+		                "indicator/time": "Tid",
+		                "indicator/geo.category": "Geo kategori",
+		                "scaletype/linear": "Linjär",
+		                "scaletype/log": "Logaritmisk",
+		                "scaletype/time": "Tid",
+		              }
+		        }
+		    }
+		}
+	);
+
+});
 </script>
