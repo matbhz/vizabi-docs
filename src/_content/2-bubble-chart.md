@@ -191,6 +191,8 @@ function flipDeviceBubbleChart() {
 	mobileBubbleChartViz.trigger('resize');
 }
 
+var mobileBubbleChartViz;
+
 ready(function() {
 
 	Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder'), {
@@ -201,7 +203,7 @@ ready(function() {
 		}
 	);
 
-	var mobileBubbleChartViz = Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder2'), {
+	mobileBubbleChartViz = Vizabi('BubbleChart', document.getElementById('bubble-chart-placeholder2'), {
 			data: {
 				reader: 'csv-file',
 				path: WAFFLE_ADDRESS

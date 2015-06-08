@@ -116,7 +116,7 @@ this.default_options = {
             }
         },
         marker: {
-            dimensions: ["entities", "time"],
+            space: ["entities", "time"],
             label: {
                 use: "property",
                 which: "geo.name"
@@ -437,7 +437,7 @@ ready(function() {
                     },
                     //Markers correspond to visuals that we want to show. We have label, axis and color
                     marker: {
-                        dimensions: ["entities", "time"],
+                        space: ["entities", "time"],
                         label: {
                             use: "property",
                             which: "geo.name"
